@@ -1,3 +1,3 @@
 module.exports =
-  '/app1': 'http://localhost:1338'
-  '/app2': 'http://localhost:1339'
+  '/app1': 'http://app1.service.consul:1337'
+  '/app2': 'http://app2.service.consul:1337'
