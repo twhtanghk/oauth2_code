@@ -1,0 +1,31 @@
+{
+  "name": "oauth2_code",
+  "version": "0.0.1",
+  "description": "Reverse proxy for oauth2 code authorization",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twhtanghk/oauth2_code.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/twhtanghk/oauth2_code/issues"
+  },
+  "homepage": "https://github.com/twhtanghk/oauth2_code#readme",
+  "dependencies": {
+    "http-proxy-middleware": "^0.17.0",
+    "lodash": "^4.14.1",
+    "needle": "^1.0.0",
+    "node-uuid": "^1.4.7",
+    "sails": "^0.12.4",
+    "sails-hook-requestlogger-file": "^2.0.5",
+    "ssl-root-cas": "^1.2.1"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.10.0"
+  }
+}
