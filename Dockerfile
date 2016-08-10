@@ -11,4 +11,4 @@ RUN	tar --strip-components=1 -xzf /tmp/${VERSION}.tar.gz && \
 	npm install
 EXPOSE	1337
 
-ENTRYPOINT node app.js --prod
+CMD node app.js --prod
