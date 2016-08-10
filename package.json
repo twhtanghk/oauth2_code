@@ -2,7 +2,10 @@
   "name": "oauth2_code",
   "version": "0.0.1",
   "description": "Reverse proxy for oauth2 code authorization",
-  "main": "index.js",
+  "main": "app.js",
+  "bin": {
+    "oauth2_code": "./bin/oauth2_code"
+  },
   "scripts": {
     "start": "node app.js --prod"
   },
@@ -10,8 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/twhtanghk/oauth2_code.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Tommy Tang <twhtanghk@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/twhtanghk/oauth2_code/issues"
   },
