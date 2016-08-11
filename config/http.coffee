@@ -14,7 +14,7 @@ module.exports =
       proxy: (req, res, next) ->
         # check if url matched any path defined in sails.config.proxy.router
         matched = _.some _.keys(sails.config.proxy.router), (pattern) ->
-          new RegExp pattern
+          new RegExp "^#{pattern}"
             .test req.url
         if matched
           proxy ?= require('http-proxy-middleware')(sails.config.proxy)

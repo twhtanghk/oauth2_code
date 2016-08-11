@@ -4,39 +4,16 @@ Reverse proxy for oauth2 code authorization similar to [bitly/oauth2_proxy](http
 ## Configuration
 
 ### OAuth2 Provider configured by environment variables in .env
-#### google
-```
-```
+#### [google .env](https://github.com/twhtanghk/oauth2_code/blob/master/google.env)
 
-#### github .env
-```
-OAUTH2_PROVIDER=github
-OAUTH2_CLIENT_ID=client_id
-OAUTH2_CLIENT_SECRET=client_secret
-OAUTH2_SCOPE=user:email
-OAUTH2_LOGIN_URL=https://github.com/login/oauth/authorize
-OAUTH2_REDEEM_URL=https://github.com/login/oauth/access_token
-OAUTH2_VALIDATE_URL=https://api.github.com/user
-OAUTH2_CALLBACK_URL=callback_url # (e.g. http://localhost:1337/oauth2/callback)
-OAUTH2_PROXY_COOKIE_SECRET=keep_it_secret
-OAUTH2_PROXY_COOKIE_EXPIRE=600000
-```
+#### [github .env](https://github.com/twhtanghk/oauth2_code/blob/master/github.env)
 
-#### mob .env
-```
-OAUTH2_PROVIDER=mob
-OAUTH2_CLIENT_ID=client_id
-OAUTH2_CLIENT_SECRET=client_secret
-OAUTH2_SCOPE=https://mob.myvnc.com/org/users
-OAUTH2_LOGIN_URL=https://mob.myvnc.com/org/oauth2/authorize/
-OAUTH2_REDEEM_URL=https://mob.myvnc.com/org/oauth2/token/
-OAUTH2_VALIDATE_URL=https://mob.myvnc.com/org/oauth2/verify/
-OAUTH2_CALLBACK_URL=callback_url # (e.g. http://localhost:1337/oauth2/callback)
-OAUTH2_PROXY_COOKIE_SECRET=keep_it_secret
-OAUTH2_PROXY_COOKIE_EXPIRE=600000
-#OAUTH2_CA=/etc/ssl/certs/selfSignedCA.pem # optional parameters for self-signed CA only
-#upstream=/tmp/upstream.coffee # optional parameters for customized proxy settings
-```
+#### [mob .env](https://github.com/twhtanghk/oauth2_code/blob/master/mob.env)
+
+#### add other provider
+1. extend api/services/provider class in config/env/other.coffee
+2. customize the method validate, token, user, afterAuth
+3. define other.env with default environment variables
 
 ### Default upstream [http-echo-server](https://github.com/watson/http-echo-server) confgiured in upstream.coffee
 ```
