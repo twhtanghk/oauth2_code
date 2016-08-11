@@ -22,15 +22,16 @@ module.exports =
   log:
     level: 'silly'
   bootstrap: (cb) ->
-    # add self signe ca if defined
+    # add self signed ca if defined
     CA = process.env.OAUTH2_CA
     if CA
       require 'ssl-root-cas'
         .inject()
         .addFile CA
 
-    # start upstream servers if defined
-    if sails.config.proxy.apps
-      sails.config.proxy.apps()
+    # if apps defined, start upstream servers after server started
+    sails.on 'lifted', ->
+      if sails.config.proxy.apps
+        sails.config.proxy.apps()
 
     cb()
