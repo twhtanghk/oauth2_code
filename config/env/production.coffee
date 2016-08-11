@@ -1,5 +1,5 @@
 ###
-see environment variable defined in .env
+see environment variables defined in .env
 ###
 module.exports =
   oauth2:
@@ -18,12 +18,7 @@ module.exports =
       maxAge: parseInt process.env.OAUTH2_PROXY_COOKIE_EXPIRE, 10
       httpOnly: true
       secure: false  # assume front end (nginx) directly connected to this app
-  proxy:
-    target: '.*'
-    xfwd: true
-    prependPath: false
-    ignorePath: true
-    router: require './upstream.coffee'
+  proxy: require process.env.upstream || './upstream.coffee'
   log:
     level: 'silly'
   bootstrap: (cb) ->

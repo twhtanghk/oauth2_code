@@ -1,3 +1,7 @@
 module.exports =
-  '/app1': 'http://app1.service.consul:1337'
-  '/app2': 'http://app2.service.consul:1337'
+  target: '.*'
+  xfwd: (process.env.xfwd || 'true') == 'true'
+  prependPath: (process.env.prependPath || 'false') == 'true'
+  ignorePath: (process.env.ignorePath || 'true') == 'true'
+  router: 
+    '/': 'http://localhost:1338'
