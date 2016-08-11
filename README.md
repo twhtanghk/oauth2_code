@@ -1,5 +1,5 @@
 # oauth2_code
-Reverse proxy for oauth2 code authorization similar to bitly/oauth2_proxy
+Reverse proxy for oauth2 code authorization similar to [bitly/oauth2_proxy](https://github.com/bitly/oauth2_proxy)
 
 ## Configuration
 
@@ -8,7 +8,7 @@ Reverse proxy for oauth2 code authorization similar to bitly/oauth2_proxy
 ```
 ```
 
-#### github
+#### github .env
 ```
 OAUTH2_PROVIDER=github
 OAUTH2_CLIENT_ID=client_id
@@ -22,7 +22,7 @@ OAUTH2_PROXY_COOKIE_SECRET=keep_it_secret
 OAUTH2_PROXY_COOKIE_EXPIRE=600000
 ```
 
-#### mob
+#### mob .env
 ```
 OAUTH2_PROVIDER=mob
 OAUTH2_CLIENT_ID=client_id
@@ -38,7 +38,7 @@ OAUTH2_PROXY_COOKIE_EXPIRE=600000
 #upstream=/tmp/upstream.coffee # optional parameters for customized proxy settings
 ```
 
-### Default upstream servers confgiured in upstream.coffee
+### Default upstream [http-echo-server](https://github.com/watson/http-echo-server) confgiured in upstream.coffee
 ```
 module.exports =
   target: '.*'
@@ -47,11 +47,14 @@ module.exports =
   ignorePath: (process.env.ignorePath || 'false') == 'true'
   router:
     '/': 'http://localhost:1338'
+  apps: ->
+    process.env.PORT = 1338
+    require 'http-echo-server'
 ```
 
 ### Start oauth2 proxy
 #### run as node application
-1. create config files '.env' and 'upstream.coffee'
+1. create config files '.env' and 'upstream.coffee' if required
 2. update environment variables defined in .env
 3. update proxy settings defined in upstream.coffee if required
 ```
@@ -61,13 +64,18 @@ env PORT=80 NODE_ENV=production oauth2_code
 ```
 
 #### run docker image
-update environment variables defined in .env and create /path/upstream.coffee with target upstream servers
+1. create config files '.env' and 'upstream.coffee' if required
+2. update environment variables defined in .env 
+3. update proxy settings defined in upstream.coffee if required
 ```
-docker run --env-file .env -v /path/upstream.coffee:/usr/src/app/config/env/upstream.coffee -v /etc/ssl/certs:/etc/ssl/certs -v /usr/local/share/ca-certificates:/usr/local/share/ca-certificates -d twhtanghk/oauth2_code
+docker run --name oauth2_code --env-file .env -p 1337:1337 -v /path/upstream.coffee:/usr/src/app/config/env/upstream.coffee -v /etc/ssl/certs:/etc/ssl/certs -v /usr/local/share/ca-certificates:/usr/local/share/ca-certificates -d twhtanghk/oauth2_code
 ```
 
 #### run by docker compose
-update docker-compose.yml
+1. create config files '.env' and 'upstream.coffee' if required
+2. update environment variables defined in .env 
+3. update proxy settings defined in upstream.coffee if required
+4. update docker-compose.yml if required
 ```
 docker-compose -f docker-compose.yml up
 ```
