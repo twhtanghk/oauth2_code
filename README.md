@@ -10,6 +10,16 @@ Reverse proxy for oauth2 code authorization similar to bitly/oauth2_proxy
 
 #### github
 ```
+OAUTH2_PROVIDER=github
+OAUTH2_CLIENT_ID=client_id
+OAUTH2_CLIENT_SECRET=client_secret
+OAUTH2_SCOPE=user:email
+OAUTH2_LOGIN_URL=https://github.com/login/oauth/authorize
+OAUTH2_REDEEM_URL=https://github.com/login/oauth/access_token
+OAUTH2_VALIDATE_URL=https://api.github.com/user
+OAUTH2_CALLBACK_URL=callback_url # (e.g. http://localhost:1337/oauth2/callback)
+OAUTH2_PROXY_COOKIE_SECRET=keep_it_secret
+OAUTH2_PROXY_COOKIE_EXPIRE=600000
 ```
 
 #### mob
@@ -33,8 +43,8 @@ OAUTH2_PROXY_COOKIE_EXPIRE=600000
 module.exports =
   target: '.*'
   xfwd: (process.env.xfwd || 'true') == 'true'
-  prependPath: (process.env.prependPath || 'false') == 'true'
-  ignorePath: (process.env.ignorePath || 'true') == 'true'
+  prependPath: (process.env.prependPath || 'true') == 'true'
+  ignorePath: (process.env.ignorePath || 'false') == 'true'
   router:
     '/': 'http://localhost:1338'
 ```

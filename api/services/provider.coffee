@@ -71,6 +71,7 @@ class Provider
       .postAsync @OAUTH2_REDEEM_URL, data,
         username: @OAUTH2_CLIENT_ID
         password: @OAUTH2_CLIENT_SECRET
+        accept: 'application/json'
       .then @token
       .then @validate
       .then (user) ->
