@@ -4,11 +4,10 @@ Reverse proxy for oauth2 code authorization similar to [bitly/oauth2_proxy](http
 ## Configuration
 
 ### OAuth2 Provider configured by environment variables in .env
-#### [google .env](https://github.com/twhtanghk/oauth2_code/blob/master/google.env)
-
-#### [github .env](https://github.com/twhtanghk/oauth2_code/blob/master/github.env)
-
-#### [mob .env](https://github.com/twhtanghk/oauth2_code/blob/master/mob.env)
+#### available providers
+1. [google.env](https://github.com/twhtanghk/oauth2_code/blob/master/google.env)
+2. [github.env](https://github.com/twhtanghk/oauth2_code/blob/master/github.env)
+3. [mob.env](https://github.com/twhtanghk/oauth2_code/blob/master/mob.env)
 
 #### add other provider
 1. extend api/services/provider class in config/env/other.coffee
