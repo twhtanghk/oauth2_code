@@ -7,7 +7,6 @@ Reverse proxy for oauth2 code authorization similar to [bitly/oauth2_proxy](http
 #### environment variables
 ```
 # mandatory environment variables
-PORT: port to start oauth2_code proxy server
 OAUTH2_PROVIDER: OAuth2 proivder name
 OAUTH2_CLIENT_ID: OAuth2 client id
 OAUTH2_CLIENT_SECRET: OAuth2 client secret
@@ -17,6 +16,7 @@ OAUTH2_REDEEM_URL: OAuth2 provider token request url
 OAUTH2_VALIDATE_URL: OAuth2 user profile url
 OAUTH2_CALLBACK_URL: OAuth2 callback url
 # optional environment variables
+PORT: port to start oauth2_code proxy server (default: 1337 if not defined)
 OAUTH2_PROXY_COOKIE_SECRET: user specified session secret (default: auto-generated one if not defined)
 OAUTH2_PROXY_COOKIE_EXPIRE: user specified session timeout (default: 600000=10min if not defined)
 OAUTH2_CA: self-signed CA
