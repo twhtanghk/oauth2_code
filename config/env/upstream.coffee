@@ -4,6 +4,6 @@ module.exports =
   prependPath: (process.env.prependPath || 'true') == 'true'
   ignorePath: (process.env.ignorePath || 'false') == 'true'
   router: 
-    '/': "http://localhost:#{process.env.PORT++}"
+    '/': "http://localhost:#{sails.config.PORT++}"
   apps: ->
     require 'http-echo-server'
