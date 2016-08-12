@@ -15,7 +15,7 @@ module.exports =
   session:
     secret: process.env.OAUTH2_PROXY_COOKIE_SECRET
     cookie:
-      maxAge: parseInt process.env.OAUTH2_PROXY_COOKIE_EXPIRE, 10
+      maxAge: parseInt process.env.OAUTH2_PROXY_COOKIE_EXPIRE || '600000', 10
       httpOnly: true
       secure: false  # assume front end (nginx) directly connected to this app
   proxy: require process.env.upstream || './upstream.coffee'

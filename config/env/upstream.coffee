@@ -4,7 +4,6 @@ module.exports =
   prependPath: (process.env.prependPath || 'true') == 'true'
   ignorePath: (process.env.ignorePath || 'false') == 'true'
   router: 
-    '/': 'http://localhost:1338'
+    '/': "http://localhost:#{process.env.PORT++}"
   apps: ->
-    process.env.PORT = 1338
     require 'http-echo-server'
