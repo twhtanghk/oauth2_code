@@ -36,19 +36,7 @@ upstream: path of customized upstream.coffee (default to start http-echo-server 
 2. customize the method validate, token, user, afterAuth
 3. define other.env with default environment variables
 
-### Default upstream [http-echo-server](https://github.com/watson/http-echo-server) confgiured in upstream.coffee
-```
-module.exports =
-  target: '.*'
-  xfwd: (process.env.xfwd || 'true') == 'true'
-  prependPath: (process.env.prependPath || 'true') == 'true'
-  ignorePath: (process.env.ignorePath || 'false') == 'true'
-  router:
-    '/': 'http://localhost:1338'
-  apps: ->
-    process.env.PORT = 1338
-    require 'http-echo-server'
-```
+### Default upstream [http-echo-server](https://github.com/watson/http-echo-server) confgiured in [upstream.coffee](https://github.com/twhtanghk/oauth2_code/blob/master/config/env/upstream.coffee)
 
 ### Start oauth2 proxy
 #### run as node application
