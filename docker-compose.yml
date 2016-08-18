@@ -1,15 +1,49 @@
 version: '2'
 services:
+  proxy_mongo:
+    image: mongo
+    container_name: proxy_mongo
+    hostname: proxy_mongo
+    ports:
+      - 27017
+    volumes:
+      - ${COMPOSEROOT}/proxy_mongo/data:/data/db
+    command: mongod --directoryperdb
+
+  echo:
+    image: solsson/http-echo
+    container_name: echo
+    hostname: echo
+    ports: 
+      - 1338
+    environment:
+      PORT: 1338
+
+  sails_proxy:
+    depends_on:
+      - proxy_mongo
+      - echo
+    image: twhtanghk/sails_proxy
+    container_name: sails_proxy
+    hostname: sails_proxy
+    ports:
+      - 1337
+    environment:
+      admin: admin@mob.mvync.com
+
   oauth2_code:
+    depends_on:
+      - sails_proxy
     image: twhtanghk/oauth2_code
     container_name: oauth2_code
     hostname: oauth2_code
     ports:
       - 1337:1337
     volumes:
-      - /path/upstream.coffee:/usr/src/config/env/upstream.coffee
+      - /home/myroot/tmp/oauth2_code:/usr/src/app
       - /etc/ssl/certs:/etc/ssl/certs
       - /usr/local/share/ca-certificates:/usr/local/share/ca-certificates
     environment:
       SERVICE_NAME: oauth2_code
+      email: @mob.myvnc.com$
     env_file: .env

@@ -1,4 +1,3 @@
-_ = require 'lodash'
 proxy = null
 
 module.exports =
@@ -12,22 +11,13 @@ module.exports =
               next()
           .catch res.serverError
       proxy: (req, res, next) ->
-        # check if url matched any path defined in sails.config.proxy.router
-        matched = _.some _.keys(sails.config.proxy.router), (pattern) ->
-          new RegExp "^#{pattern}"
-            .test req.url
-        if matched
-          proxy ?= require('http-proxy-middleware')(sails.config.proxy)
-          proxy(req, res, next)
-        else
-          next()
+        proxy ?= require('http-proxy-middleware')(sails.config.proxy)
+        proxy(req, res, next)
       order: [
         'cookieParser'
         'session'
         'router'
+        'favicon'
         'isAuth'
         'proxy'
-        'favicon'
-        '404'
-        '500'
       ]

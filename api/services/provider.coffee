@@ -85,6 +85,7 @@ class Provider
         headers:
           Authorization: "Bearer #{token}"
       .then @user
+      .then @email
       .then (user) ->
         _.extend user, token: token
 
@@ -99,6 +100,15 @@ class Provider
     if res.body.error
       return Promise.reject res.body.error
     res.body.user
+
+  # validate if user email matched the specified pattern
+  email: (user) ->
+    matched = _.some sails.config.email, (pattern) ->
+      new RegExp pattern
+        .test user
+    if not matched
+      return Promise.reject "#{user.email} not matched with defined email domain"
+    user
 
   # customized method to pass user details fter user authenticated
   afterAuth: (req) ->

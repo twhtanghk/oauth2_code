@@ -1,6 +1,6 @@
 {
   "name": "oauth2_code",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Reverse proxy for oauth2 code authorization",
   "main": "app.js",
   "bin": {
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/twhtanghk/oauth2_code#readme",
   "dependencies": {
-    "http-echo-server": "^1.0.0",
     "http-proxy-middleware": "^0.17.0",
     "lodash": "^4.14.1",
     "needle": "^1.0.0",

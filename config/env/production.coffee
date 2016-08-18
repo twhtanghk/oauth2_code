@@ -21,17 +21,3 @@ module.exports =
   proxy: require process.env.upstream || './upstream.coffee'
   log:
     level: 'silly'
-  bootstrap: (cb) ->
-    # add self signed ca if defined
-    CA = process.env.OAUTH2_CA
-    if CA
-      require 'ssl-root-cas'
-        .inject()
-        .addFile CA
-
-    # if apps defined, start upstream servers after server started
-    sails.on 'lifted', ->
-      if sails.config.proxy.apps
-        sails.config.proxy.apps()
-
-    cb()

@@ -1,9 +1,15 @@
+_ = require 'lodash'
+
+_.defaults process.env,
+  PORT: 1337
+  xfwd: 'true'
+  prependPath: 'false'
+  ignorePath: 'false'
+
 module.exports =
   target: '.*'
-  xfwd: (process.env.xfwd || 'true') == 'true'
-  prependPath: (process.env.prependPath || 'true') == 'true'
-  ignorePath: (process.env.ignorePath || 'false') == 'true'
+  xfwd: process.env.xfwd == 'true'
+  prependPath: process.env.prependPath == 'true'
+  ignorePath: process.env.ignorePath == 'true'
   router: 
-    '/': "http://localhost:#{process.env.PORT++}"
-  apps: ->
-    require 'http-echo-server'
+    '/': process.env.target || "http://sails_proxy:1337"
