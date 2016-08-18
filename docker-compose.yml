@@ -40,7 +40,6 @@ services:
     ports:
       - 1337:1337
     volumes:
-      - /home/myroot/tmp/oauth2_code:/usr/src/app
       - /etc/ssl/certs:/etc/ssl/certs
       - /usr/local/share/ca-certificates:/usr/local/share/ca-certificates
     environment:
