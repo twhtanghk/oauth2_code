@@ -105,7 +105,7 @@ class Provider
   email: (user) ->
     matched = _.some sails.config.email, (pattern) ->
       new RegExp pattern
-        .test user
+        .test user.email
     if not matched
       return Promise.reject "#{user.email} not matched with defined email domain"
     user

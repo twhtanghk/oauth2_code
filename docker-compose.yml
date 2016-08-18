@@ -44,5 +44,5 @@ services:
       - /usr/local/share/ca-certificates:/usr/local/share/ca-certificates
     environment:
       SERVICE_NAME: oauth2_code
-      email: @mob.myvnc.com$
+      NODE_ENV: production
     env_file: .env

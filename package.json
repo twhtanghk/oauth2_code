@@ -1,6 +1,6 @@
 {
   "name": "oauth2_code",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Reverse proxy for oauth2 code authorization",
   "main": "app.js",
   "bin": {

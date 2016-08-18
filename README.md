@@ -33,7 +33,7 @@ env PORT=80 NODE_ENV=production oauth2_code
 1. create config files '.env' if required
 2. update environment variables defined in .env 
 ```
-docker run --name oauth2_code --env-file .env -p 1337:1337 -v /etc/ssl/certs:/etc/ssl/certs -v /usr/local/share/ca-certificates:/usr/local/share/ca-certificates -d twhtanghk/oauth2_code
+docker run --name oauth2_code -e "NODE_ENV=production" --env-file .env -p 1337:1337 -v /etc/ssl/certs:/etc/ssl/certs -v /usr/local/share/ca-certificates:/usr/local/share/ca-certificates -d twhtanghk/oauth2_code
 ```
 
 #### run by docker compose (preferred way to start required services (mongo, echo, sails_proxy, oauth2_code)

@@ -1,11 +1,12 @@
+provider = null
 proxy = null
 
 module.exports =
   http:
     middleware:
       isAuth: (req, res, next) ->
-        sails.config.oauth2.provider()
-          .isAuth req, res
+        provider ?= sails.config.oauth2.provider()
+        provider.isAuth req, res
           .then (user) ->
             if user
               next()
