@@ -29,6 +29,6 @@
     "ssl-root-cas": "^1.2.1"
   },
   "devDependencies": {
-    "coffee-script": "^1.10.0"
+    "coffee-script": "^1.12.4"
   }
 }
