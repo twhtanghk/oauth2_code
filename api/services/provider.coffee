@@ -110,7 +110,7 @@ class Provider
       return Promise.reject "#{user.email} not matched with defined email domain"
     user
 
-  # customized method to pass user details fter user authenticated
+  # customized method to pass user details after user authenticated
   afterAuth: (req) ->
     req.headers['X-Forwarded-User'] = req.session.user.username
     req.headers['X-Forwarded-Email'] = req.session.user.email
