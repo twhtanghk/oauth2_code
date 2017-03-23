@@ -1,7 +1,18 @@
-FROM	node
+FROM node
 
-ENV VERSION 0.0.8
-RUN	npm install oauth2_code@${VERSION} -g
-EXPOSE	1337
+ENV VER=${VER:-config} \
+    REPO=https://github.com/twhtanghk/oauth2_code \
+    APP=/usr/src/app
 
-CMD oauth2_code
+RUN apt-get update && \
+    apt-get install -y git && \
+    apt-get clean && \
+    git clone -b $VER $REPO $APP
+
+WORKDIR $APP
+
+RUN npm install
+	
+EXPOSE 1337
+
+ENTRYPOINT node app.js --prod

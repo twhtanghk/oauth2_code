@@ -17,29 +17,14 @@ Reverse proxy for oauth2 code authorization similar to [bitly/oauth2_proxy](http
 2. customize the method validate, token, user, afterAuth
 3. define other.env with default environment variables
 
-### Default upstream [sails_proxy](https://github.com/twhtanghk/sails_proxy) confgiured in [upstream.coffee](https://github.com/twhtanghk/oauth2_code/blob/master/config/env/upstream.coffee)
+### Default upstream [sails_proxy](https://github.com/twhtanghk/sails_proxy)
+1. target=http://sails_proxy:1337 defined in .env
 
 ### Start oauth2 proxy
-#### run as node application
-1. create config files '.env'
-2. update environment variables defined in .env
-```
-npm install oauth2_code -g
-set -a; . .env; set +a
-env PORT=80 NODE_ENV=production oauth2_code
-```
-
-#### run docker image
-1. create config files '.env' if required
-2. update environment variables defined in .env 
-```
-docker run --name oauth2_code -e "NODE_ENV=production" --env-file .env -p 1337:1337 -v /etc/ssl/certs:/etc/ssl/certs -v /usr/local/share/ca-certificates:/usr/local/share/ca-certificates -d twhtanghk/oauth2_code
-```
-
 #### run by docker compose (preferred way to start required services (mongo, echo, sails_proxy, oauth2_code)
-1. create config files '.env' if required
+1. download config files '.env' and docker-compose.yml
 2. update environment variables defined in .env 
-4. update docker-compose.yml if required
+3. update docker-compose.yml if required
 ```
 docker-compose -f docker-compose.yml up
 ```
